@@ -24,8 +24,7 @@ EOF
 
 sudo sed -i "s/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
 
-echo "mysql-server mysql-server/root_password password $rootPassword" | sudo debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password $rootPassword" | sudo debconf-set-selections
+echo -e "When prompted use password: $rootPassword"
 
 echo - "Running MySQL secure installation"
 sudo mysql_secure_installation
