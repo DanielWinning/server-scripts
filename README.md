@@ -2,21 +2,20 @@
 
 A collection of scripts to help ease the setup of new servers.
 
-## Available Scripts
+## How To Use
 
-### init.sh
-
-Use this script to create a new sudo user and perform some basic setup steps for your server.
-
-When first connecting to your server as your root user, you can immediately run the following command:
+After creating a new server and first connecting via SSH as your root user, you can run the following command which runs some initial setup
+steps and installs this repository for easy access to these scripts on your server.
 
 ```
 curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/init.sh | bash -s -- <username>
 ```
 
-After running the command please exit your server and connect again with your new user.
+You can then easily use the rest of the scripts provided by this package.
 
-### webserver.sh
+### Available Scripts
+
+### ~/server-scripts/webserver.sh <domain> <email>
 
 > **Before Running**: This script will create an SSL certificate and the server config for your
 > domain name. Please ensure you have pointed the desired domain to your server and it has propagated before
@@ -24,32 +23,8 @@ After running the command please exit your server and connect again with your ne
 
 Use this script after running the init script to install an Nginx webserver ready to serve HTML/PHP.
 
-```
-curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/webserver.sh | bash -s -- <domain> <email>
-```
+### ~/server-scripts/mysql-setup.sh <username> <appUsername> <ipAddress>
 
-## Database Setup (MySQL)
+This command installs MySQL Server and creates a user with the specified `<username>` that can connect from your specified `<ipAddress>`.
 
-### mysql-setup.sh
-
-Installs MySQL server, updates the root user, updates bind address to allow remote connections and runs `mysql_secure_installation`.
-
-```
-curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/mysql-setup.sh | bash -s -- <rootPassword>
-```
-
-### mysql-app-user.sh
-
-Sets up a database user for your application.
-
-```
-curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/mysql-app-user.sh | bash -s -- <username> <password>
-```
-
-### mysql-user.sh
-
-Sets up a remote database user (to connect from your IDE for example).
-
-```
-curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/mysql-user.sh | bash -s -- <username> <password> <ipAddress>
-```
+Also creates an application user for use by your web application with the username `<appUsername>`.
