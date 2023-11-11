@@ -27,3 +27,29 @@ Use this script after running the init script to install an Nginx webserver read
 ```
 curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/webserver.sh | bash -s -- <domain> <email>
 ```
+
+## Database Setup (MySQL)
+
+### mysql-setup.sh
+
+Installs MySQL server, updates the root user, updates bind address to allow remote connections and runs `mysql_secure_installation`.
+
+```
+curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/mysql-setup.sh | bash -s -- <rootPassword>
+```
+
+### mysql-app-user.sh
+
+Sets up a database user for your application.
+
+```
+curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/mysql-app-user.sh | bash -s -- <username> <password>
+```
+
+### mysql-user.sh
+
+Sets up a remote database user (to connect from your IDE for example).
+
+```
+curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/mysql-user.sh | bash -s -- <username> <password> <ipAddress>
+```
