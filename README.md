@@ -15,7 +15,7 @@ You can then easily use the rest of the scripts provided by this package.
 
 ### Available Scripts
 
-### ~/server-scripts/webserver.sh <domain> <email>
+### ~/server-scripts/webserver.sh {domain} {email}
 
 > **Before Running**: This script will create an SSL certificate and the server config for your
 > domain name. Please ensure you have pointed the desired domain to your server and it has propagated before
@@ -23,8 +23,8 @@ You can then easily use the rest of the scripts provided by this package.
 
 Use this script after running the init script to install an Nginx webserver ready to serve HTML/PHP.
 
-### ~/server-scripts/mysql-setup.sh <username> <appUsername> <ipAddress>
+### ~/server-scripts/mysql-setup.sh {username} {appUsername} {ipAddress}
 
-This command installs MySQL Server and creates a user with the specified `<username>` that can connect from your specified `<ipAddress>`.
+This command installs MySQL Server and creates a user with the specified `{username}` that can connect from your specified `{ipAddress}`.
 
-Also creates an application user for use by your web application with the username `<appUsername>`.
+Also creates an application user for use by your web application with the username `{appUsername}`.
