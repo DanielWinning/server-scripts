@@ -15,7 +15,7 @@ echo -e "Allow Nginx through firewall"
 sudo ufw allow 'Nginx Full'
 
 echo -e "Downloading and generating website config"
-sudo bash -c "curl <webserver.conf> > /etc/nginx/sites-available/$1"
+sudo bash -c "curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/webserver.conf > /etc/nginx/sites-available/$1"
 sudo sed -i "s/domain.com/$1" /etc/nginx/sites-available/"$1"
 sudo ln -s /etc/nginx/sites-available/"$1" /etc/nginx/sites-enabled/
 
@@ -25,7 +25,7 @@ echo -e "Creating website directories"
 sudo chown -R $USER:$USER /var/www/
 sudo mkdir -p /var/www/"$1"/public
 
-sudo bash -c "curl <nginx.html> > /var/www/$1/public/index.html"
+sudo bash -c "curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/nginx.html > /var/www/$1/public/index.html"
 
 echo -e "Installing Certbot dependencies"
 sudo snap install core
@@ -33,7 +33,7 @@ sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
-echo -e "Generating SSL certificate for $2"
+echo -e "Generating SSL certificate for $1"
 sudo certbot --nginx --no-interactive -m "$2" -d "$1" --agree-tos
 
 echo -e "Generating SSH key"
