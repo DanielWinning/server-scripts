@@ -16,7 +16,7 @@ sudo ufw allow 'Nginx Full'
 
 echo -e "Downloading and generating website config"
 sudo bash -c "curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/webserver.conf > /etc/nginx/sites-available/$1"
-sudo sed -i "s/domain.com/$1" /etc/nginx/sites-available/"$1"
+sudo sed -i "s/domain.com/$1/" /etc/nginx/sites-available/"$1"
 sudo ln -s /etc/nginx/sites-available/"$1" /etc/nginx/sites-enabled/
 
 sudo unlink /etc/nginx/sites-enabled/default
