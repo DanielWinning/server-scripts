@@ -17,6 +17,7 @@ sudo ufw allow 'Nginx Full'
 echo -e "Downloading and generating website config"
 sudo bash -c "curl https://raw.githubusercontent.com/DanielWinning/server-scripts/main/webserver.conf > /etc/nginx/sites-available/$1"
 sudo sed -i "s/domain.com/$1/" /etc/nginx/sites-available/"$1"
+sudo sed -i "s/www.domain.com/$1/" /etc/nginx/sites-available/"$1"
 sudo ln -s /etc/nginx/sites-available/"$1" /etc/nginx/sites-enabled/
 
 sudo unlink /etc/nginx/sites-enabled/default
@@ -34,7 +35,7 @@ sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
 echo -e "Generating SSL certificate for $1"
-sudo certbot --nginx --no-interactive -m "$2" -d "$1" --agree-tos
+sudo certbot --nginx --non-interactive -m "$2" -d "$1" --agree-tos
 
 echo -e "Generating SSH key"
 ssh-keygen
