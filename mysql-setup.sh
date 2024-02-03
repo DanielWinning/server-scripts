@@ -27,7 +27,15 @@ sudo sed -i "s/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/
 echo -e "When prompted use password: $rootPassword"
 
 echo - "Running MySQL secure installation"
-sudo mysql_secure_installation
+mysql -e "UPDATE mysql.user SET Password = PASSWORD('$rootPassword') WHERE User = 'root'"
+# Kill the anonymous users
+mysql -e "DROP USER ''@'localhost'"
+# Because our hostname varies we'll use some Bash magic here.
+mysql -e "DROP USER ''@'$(hostname)'"
+# Kill off the demo database
+mysql -e "DROP DATABASE test"
+# Make our changes take effect
+mysql -e "FLUSH PRIVILEGES"
 
 echo -e "Restarting MySQL"
 sudo systemctl restart mysql
