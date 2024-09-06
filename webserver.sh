@@ -9,7 +9,7 @@ echo -e "Updating package manager"
 sudo apt update -y
 
 echo -e "Installing required packages"
-sudo apt install nginx php8.2-fpm php-cli unzip composer nodejs npm php-curl php-gd -y
+sudo apt install nginx php8.3-fpm php-cli unzip composer nodejs npm php-curl php-gd -y
 
 echo -e "Allow Nginx through firewall"
 sudo ufw allow 'Nginx Full'
