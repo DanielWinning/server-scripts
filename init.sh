@@ -19,6 +19,7 @@ adduser --disabled-password --gecos "" --quiet "$1"
 
 echo -e "Granting sudo privileges to $1"
 usermod -aG sudo "$1"
+usermod -aG www-data "$1"
 rsync --archive --chown="$1":"$1" ~/.ssh /home/"$1"
 
 echo -e "Cloning server scripts repository to /home/$1/server-scripts/"
